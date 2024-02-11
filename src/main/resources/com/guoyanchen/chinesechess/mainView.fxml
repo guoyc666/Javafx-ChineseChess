@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.Double?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" prefHeight="617.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.6"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guoyanchen.chinesechess.page.MainViewController">
+    <AnchorPane fx:id="boardArea" disable="true" layoutX="-1.0" layoutY="-2.0" onMouseClicked="#setBoard"
+                prefHeight="620.0" prefWidth="556.0"/>
+    <ButtonBar layoutX="572.0" layoutY="14.0" prefHeight="60.0" prefWidth="302.0">
+        <buttons>
+          <SplitMenuButton fx:id="startBtn" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false"
+                           onAction="#setStartBtn" prefHeight="41.0" prefWidth="143.0" text="新的对局"
+                           textAlignment="CENTER">
+              <items>
+                  <MenuItem fx:id="saveBtn" mnemonicParsing="false" onAction="#setSaveBtn" text="保存对局"/>
+                  <MenuItem fx:id="customizeBtn" mnemonicParsing="false" onAction="#setCustomizeBtn"
+                            text="自定义残局"/>
+                  <MenuItem fx:id="openFileBtn" mnemonicParsing="false" onAction="#setOpenFileBtn" text="打开文件"/>
+              </items>
+              <font>
+                  <Font size="18.0"/>
+              </font>
+          </SplitMenuButton>
+          <ImageView id="setting" fx:id="settingBtn" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#setSettingBtn"
+                     preserveRatio="true">
+              <Image url="@page/buttonImg/setting.png"/>
+          </ImageView>
+        </buttons>
+    </ButtonBar>
+    <AnchorPane fx:id="flag" layoutX="550.0" layoutY="100.0" mouseTransparent="true" prefHeight="407.0"
+                prefWidth="130.0">
+        <Polygon fx:id="blackArrow" layoutX="50.0" layoutY="49.0" rotate="270.0" scaleX="0.4" scaleY="0.5"
+                 stroke="BLACK" strokeType="INSIDE">
+            <points>
+                <Double fx:value="-50.0"/>
+                <Double fx:value="40.0"/>
+                <Double fx:value="50.0"/>
+                <Double fx:value="40.0"/>
+                <Double fx:value="0.0"/>
+                <Double fx:value="-60.0"/>
+            </points>
+        </Polygon>
+        <Polygon fx:id="redArrow" fill="RED" layoutX="50.0" layoutY="377.0" rotate="270.0" scaleX="0.4" scaleY="0.5"
+                 stroke="BLACK" strokeType="INSIDE">
+            <points>
+                <Double fx:value="-50.0"/>
+                <Double fx:value="40.0"/>
+                <Double fx:value="50.0"/>
+                <Double fx:value="40.0"/>
+                <Double fx:value="0.0"/>
+                <Double fx:value="-60.0"/>
+            </points>
+        </Polygon>
+        <Label fx:id="redLbl" layoutX="20.0" layoutY="308.0" text="红方行棋" textFill="RED">
+            <font>
+                <Font size="22.0"/>
+            </font>
+        </Label>
+        <Label fx:id="blackLbl" layoutX="20.0" layoutY="67.0" text="黑方行棋">
+            <font>
+                <Font size="22.0"/>
+            </font>
+        </Label>
+        <VBox id="reminder" layoutX="2.0" layoutY="150.0" prefHeight="91.0" prefWidth="110.0">
+            <Label id="reminderLbl" fx:id="timeLbl" alignment="CENTER" prefHeight="40.0" prefWidth="127.0"
+                   text="所用时间">
+                <font>
+                    <Font size="17.0"/>
+                </font>
+                <graphic>
+                    <ImageView fx:id="reminder" fitHeight="38.0" fitWidth="37.0" pickOnBounds="true"
+                               preserveRatio="true">
+                        <Image url="@page/buttonImg/reminder.png"/>
+                    </ImageView>
+                </graphic>
+            </Label>
+            <Text fx:id="timeRemaining" disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="00 ：00"
+                  textAlignment="CENTER" wrappingWidth="126.0">
+                <font>
+                    <Font size="22.0"/>
+                </font>
+            </Text>
+        </VBox>
+    </AnchorPane>
+    <VBox layoutX="677.0" layoutY="93.0" prefHeight="357.0" prefWidth="217.0">
+        <Label prefHeight="28.0" prefWidth="97.0" text="棋谱记录:">
+            <font>
+                <Font size="22.0"/>
+            </font>
+        </Label>
+        <HBox prefHeight="320.0" prefWidth="232.0">
+            <TextArea fx:id="turnsRecorder" editable="false" prefHeight="320.0" prefWidth="59.0"
+                      HBox.hgrow="NEVER"/>
+            <TextArea fx:id="redStepRecorder" editable="false" mouseTransparent="true" pickOnBounds="false"
+                      prefHeight="320.0" prefWidth="85.0" scaleShape="false" style="-fx-text-fill: red;"
+                      wrapText="true" HBox.hgrow="NEVER"/>
+            <TextArea fx:id="blackStepRecorder" editable="false" mouseTransparent="true" pickOnBounds="false"
+                      prefHeight="320.0" prefWidth="90.0" scaleShape="false" wrapText="true" HBox.hgrow="NEVER"/>
+        </HBox>
+    </VBox>
+    <ButtonBar fx:id="functionMenu" disable="true" layoutX="645.0" layoutY="467.0" prefHeight="50.0" prefWidth="217.0">
+      <buttons>
+          <ImageView fx:id="pauseBtn" fitHeight="150.0" fitWidth="50.0" onMouseClicked="#setPauseBtn"
+                     preserveRatio="true">
+              <Image url="@page/buttonImg/pause.png"/>
+          </ImageView>
+          <ImageView fx:id="drawBtn" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#setDrawBtn"
+                     preserveRatio="true">
+              <Image url="@page/buttonImg/draw.png"/>
+          </ImageView>
+          <ImageView fx:id="resignBtn" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#setResignBtn"
+                     preserveRatio="true">
+              <Image url="@page/buttonImg/resign.png"/>
+          </ImageView>
+          <ImageView fx:id="retractBtn" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#setRetractBtn"
+                     preserveRatio="true">
+              <Image url="@page/buttonImg/retract.png"/>
+          </ImageView>
+      </buttons>
+    </ButtonBar>
+    <HBox layoutX="733.0" layoutY="580.0" prefHeight="29.0" prefWidth="160.0">
+        <Hyperlink alignment="CENTER" text="了解更多"/>
+        <Separator orientation="VERTICAL" prefHeight="200.0"/>
+        <Hyperlink alignment="CENTER" text="帮助"/>
+        <Separator orientation="VERTICAL" prefHeight="200.0"/>
+        <Hyperlink alignment="CENTER" text="联系作者"/>
+    </HBox>
+</AnchorPane>
